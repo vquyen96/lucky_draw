@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lucky Draw</title>
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="style.css">
+</head>
+<body style="background: url('bg.jpg') no-repeat center /cover;">
+	<div class="mainRandom">
+		<div class="mainRandomTitle">Lucky Draw</div>
+		<div class="mainRandomNumber d-none">
+			
+		</div>
+		<div class="mainRandomBorder">
+			<div class="mainRandomBorderItem">0</div>
+			<div class="mainRandomBorderItem">0</div>
+			<div class="mainRandomBorderItem">0</div>
+		</div>
+		<div class="mainRandomButton">
+			<button class="mainRandomButtonRun">Random</button>
+			<button class="mainRandomButtonStop">Stop</button>
+		</div>
+	</div>
+	<div class="setting">
+		<div class="settingMain">
+			<div class="settingMainItem">
+				<div class="settingMainItemTitle">Max :</div>
+				<div class="settingMainItemForm">
+					<input type="number" name="max" class=" form-control">
+				</div>
+				
+			</div>
+			<div class="settingMainItem">
+				<div class="settingMainItemTitle">Pass :</div>
+				<div class="settingMainItemForm">
+					<!-- <select class="selPass form-control" name="pass" multiple="multiple"> -->
+						<input type="text" name="pass" class=" form-control" placeholder="2,3, ....">
+				</select>
+				</div>
+				
+			</div>
+			
+			<div class="settingMainItem">
+				<div class="settingMainItemTitle"></div>
+				<div class="settingMainItemForm">
+					<input type="button" name="btnSbm" class="btnSbm btn btn-primary" value="Save">
+				</div>
+			</div>
+			
+			
+		</div>
+		<div class="settingIcon" title="Cài đặt">
+			<i class="fas fa-cog"></i>
+		</div>
+	</div>
+
+	<div class="listNum">
+		<div class="listNumIcon" title="Danh sách số may mắn">
+			<i class="fas fa-list-ul"></i>
+		</div>
+		<div class="listNumMain">
+			<div class="listNumMainOption">
+				<div class="listNumMainShowModal">
+					<input type="checkbox" name="">
+					<label> Modal</label>
+				</div>
+				<div class="listNumMainDeleteAll">
+					<i class="far fa-times-circle"></i>
+					All
+				</div>
+			</div>
+			
+			<ul>
+				<li>
+					<div>Lỗi</div>
+					<div class="listNumMainDeleteItem">
+						<i class="far fa-times-circle"></i>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+	<div class="modal" tabindex="-1" role="dialog">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">Số may mắn</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <h1 class="text-center"></h1>
+	      </div>
+	      <!-- <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Save changes</button>
+	      </div> -->
+	    </div>
+	  </div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>
