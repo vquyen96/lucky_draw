@@ -11,15 +11,20 @@ $(document).ready(function(){
 
     //get max limit
     var max = localStorage.getItem("max");
-    if (max == null) max = 99;
+    if (max == null) {
+        max = 320;
+        localStorage.setItem("max", max);
+        location.reload();
+    }
     var maxSize = max.length;
+    generateDisplayBox(maxSize);
     displayNumber(max);
     $("input[name='max']").val(max);
 
 
     //get list number
     var listNum = localStorage.getItem("listNum");
-    listNum != null ? listNum = listNum.split(",") : listNum = [];
+    listNum != null && listNum !== "" ? listNum = listNum.split(",") : listNum = [];
     updateListNumHTML();
 
     var isDisplay = localStorage.getItem("displayModal");
@@ -42,7 +47,7 @@ $(document).ready(function(){
             do{
                 ran = Math.floor((Math.random() * max) + 1);
             }
-            while(pass.indexOf(ran) !== -1);
+            while(pass.indexOf(ran) !== -1 || listNum.indexOf(numberToString(ran)) !== -1);
             displayNumber(ran);
 
         }, 50);
@@ -57,26 +62,26 @@ $(document).ready(function(){
         $(this).hide();
         $(this).prev().show();
         showModal(ran);
-        addNumberToList (ran);
+        addNumberToList(ran);
+
     });
 
     //save config
     $(document).on("click", ".btnSbm", function(){
         max = $("input[name='max']").val();
         localStorage.setItem("max", max);
-
+        maxSize = max.toString().length;
+        generateDisplayBox(maxSize);
         displayNumber(max);
-        pass = $("input[name='pass']").val();
-        localStorage.setItem("pass", pass);
-        pass != null ? pass = pass.split(",") : pass = [];
-        for (var i = 0; i < pass.length; i++) pass[i] = parseInt(pass[i]);
-        console.log($("input[name='color']").val());
+        pass = generatePass($("input[name='pass']").val());
     });
 
     //Delete all list
     $(document).on("click", ".listNumMainDeleteAll", function(){
-        listNum = [];
-        updateListNumHTML();
+        if (confirm("Bạn muốn xóa tất cả ?")) {
+            listNum = [];
+            updateListNumHTML();
+        }
     });
 
     $(".listNumMainShowModal input[type='checkbox']").change(function() {
@@ -99,6 +104,22 @@ $(document).ready(function(){
         listNum.splice(itemLength-itemIndex-1, 1);
         updateListNumHTML();
     });
+
+    function generatePass(passStr) {
+        localStorage.setItem("pass", passStr);
+        var passArr = passStr.split(",");
+        for (var i = 0; i < passArr.length; i++) passArr[i] = parseInt(passArr[i]);
+        $("input[name='pass']").val(passArr.toString());
+        return passArr;
+    }
+
+    function generateDisplayBox(size) {
+        var str = "";
+        for (let i = 0; i < size; i++) {
+            str += "<div class=\"mainRandomBorderItem\">0</div>";
+        }
+        $(".mainRandomBorder").html(str);
+    }
 
     function displayNumber(number) {
         number = numberToString (number);
@@ -127,6 +148,7 @@ $(document).ready(function(){
     }
 
     function addNumberToList (number) {
+        console.log(number);
         listNum.push(numberToString (number));
         updateListNumHTML();
     }
@@ -135,8 +157,10 @@ $(document).ready(function(){
         localStorage.setItem("listNum", listNum);
         list_li = "";
         listNumLength = listNum.length;
-        for (var i = (listNumLength-1); i >= 0 ; i--) {
-            list_li += "<li><div>"+listNum[i]+"</div><div class='listNumMainDeleteItem'><i class='far fa-times-circle'></i></div></li>"
+        console.log(listNum);
+        console.log(listNumLength);
+        for (var i = listNumLength; i > 0 ; i--) {
+            list_li += "<li><div>"+listNum[i-1]+"</div><div class='listNumMainDeleteItem'><i class='far fa-times-circle'></i></div></li>"
         }
         $(".listNumMain ul").html(list_li);
     }
